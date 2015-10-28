@@ -25,40 +25,34 @@ fi
 echo "'swing-menu-corr' emends the following bugs appearing by using Java
 apps with Swing GTK theme:
 
-- menu border
-- font color of checkbox and radiobutton menu items
-- color of menu separators
+- missing menu border
+- wrong font color of activated checkbox and radiobutton menu items
+- no menu separators
 
-in Linux Mint 17.x. Refer http://www.microchip.com/forums/m844821.aspx for
-details."
+in Linux Mint 17.x. 
 
+This script changes entries of the 'menus.rc' file in all 'themes'
+directories of '/usr/share/themes/[mint-theme]/gtk-2.o/styles'.
+
+'swing-menu-corr' creates backup files as 'menus.rc.original' in every
+directory before changing the original files.
+
+Refer http://www.microchip.com/forums/m844821.aspx what this script does for details.
+
+Author: Hani Ibrahim <hani.ibrahim@gmx.de>
+License: GNU Public License 2.0
+"
+
+echo "Do you want to proceed? [Y/n]"
+read -sn 1 ans
+if [[ $ans = "n" ]] || [[ $ans = "N" ]]; then
+	echo "Process cancelled"	
+	exit 0
+fi 
 
 
 # Create safety copies with ".original" suffix
-find $dir -name "menus.rc" -exec cp {} {}.original \;
+#find $dir -name "menus.rc" -exec cp {} {}.original \;
 
 # Change the appropriate settings in menus.rc.
-find $dir -name "menus.rc" -print | xargs sed -i 's/"fg[ACTIVE] = @base_color"/"fg[ACTIVE] = @fg_color"/g';'s/"style \"menu\" 
-{
-    xthickness = 0
-    ythickness = 0"/"style "\menu\" 
-{
-    xthickness = 1
-    ythickness = 1"/g';'s/"style \"menu-item-separator\" 
-{
-    GtkSeparatorMenuItem::horizontal-padding = 0
-    GtkWidget::wide-separators = 1
-    GtkWidget::separator-width = 1
-    GtkWidget::separator-height = 7
-    
-    xthickness = 1
-    ythickness = 0"/"style "\menu-item-separator\" 
-{
-    GtkSeparatorMenuItem::horizontal-padding = 0
-    GtkWidget::wide-separators = 1
-    GtkWidget::separator-width = 1
-    GtkWidget::separator-height = 7
-    
-    xthickness = 1
-    ythickness = 1"/g'
-
+#find $dir -name "menus.rc" -print | xargs sed -i 's/"fg[ACTIVE] = @base_color"/"fg[ACTIVE] = @fg_color"/g';'
