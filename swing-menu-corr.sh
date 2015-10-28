@@ -52,7 +52,7 @@ fi
 
 
 # Create safety copies with ".original" suffix
-#find $dir -name "menus.rc" -exec cp {} {}.original \;
+find $dir -name "menus.rc" -exec cp {} {}.original \;
 
 # Change the appropriate settings in menus.rc.
-#find $dir -name "menus.rc" -print | xargs sed -i 's/"fg[ACTIVE] = @base_color"/"fg[ACTIVE] = @fg_color"/g';'
+find $dir -name "menus.rc" -print | xargs sed -i -e 42c"xthickness = 1" -e 43c"ythickness = 1" -e 53c"fg[ACTIVE] = @fg_color" -e 103c"ythickness = 1"
