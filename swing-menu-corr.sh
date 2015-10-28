@@ -55,4 +55,4 @@ fi
 find $dir -name "menus.rc" -exec cp {} {}.original \;
 
 # Change the appropriate settings in menus.rc.
-find $dir -name "menus.rc" -print | xargs sed -i -e 42c"xthickness = 1" -e 43c"ythickness = 1" -e 53c"fg[ACTIVE] = @fg_color" -e 103c"ythickness = 1"
+find $dir -name "menus.rc" -print | xargs sed -i -e 42c"\    xthickness = 1 # Changed by swing-menu-corr.sh" -e 43c"\    ythickness = 1 # Changed by swing-menu-corr.sh" -e 53c"\    fg[ACTIVE] = @fg_color # Changed by swing-menu-corr.sh" -e 103c"\    ythickness = 1 # Changed by swing-menu-corr.sh"
