@@ -49,16 +49,16 @@
 # Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 
 # Target directory
-#dir="/usr/share/themes"
-dir=/home/hi/Schreibtisch/themes #test environment
+dir="/usr/share/themes"
+#dir=/home/hi/Schreibtisch/themes #test environment
 
 
 # Check for root permission
-#if [ `id -u` -ne 0 ]
-#then 
-#	echo 'ERROR: Please use "sudo" to run this script with root permission' 1>&2
-#	exit -101
-#fi
+if [ `id -u` -ne 0 ]
+then 
+	echo 'ERROR: Please use "sudo" to run this script with root permission' 1>&2
+	exit -101
+fi
 
 echo "'swing-menu-corr' emends the following bugs appearing by using Java
 apps with Swing GTK theme:
@@ -96,4 +96,4 @@ find $dir -name "menus.rc" -exec bash -c 'if [ ! -f {}.original ];then cp {} {}.
 
 # Change to the appropriate settings in menus.rc for correct 
 # displayed Swing menus.
-find $dir -name "menus.rc" -print | xargs sed -i -e 42c"\    xthickness = 1 # Changed by swing-menu-corr.sh" -e 43c"\    ythickness = 1 # Changed by swing-menu-corr.sh" -e 53c"\    fg[ACTIVE] = @fg_color # Changed by swing-menu-corr.sh" -e 103c"\    ythickness = 1 # Changed by swing-menu-corr.sh"
+find $dir -name "menus.rc" -print | xargs sed -i -e 42c"\    xthickness = 1 # Changed by swing-menu-corr.sh" -e 43c"\    ythickness = 1 # Changed by swing-menu-corr.sh" -e 53c"\    fg[ACTIVE] = @fg_color # Changed by swing-menu-corr.sh" -e 103c"\    ythickness = 1 # Changed by swing-menu-corr.sh" && echo "Successfully finished"

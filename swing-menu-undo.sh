@@ -39,16 +39,16 @@
 # Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 
 # Target directory
-#dir="/usr/share/themes"
-dir=/home/hi/Schreibtisch/themes #test environment
+dir="/usr/share/themes"
+#dir=/home/hi/Schreibtisch/themes #test environment
 
 
 # Check for root permission
-#if [ `id -u` -ne 0 ]
-#then 
-#	echo 'ERROR: Please use "sudo" to run this script with root permission' 1>&2
-#	exit -101
-#fi
+if [ `id -u` -ne 0 ]
+then 
+	echo 'ERROR: Please use "sudo" to run this script with root permission' 1>&2
+	exit -101
+fi
 
 echo "'swing-menu-undo' reverts the changes of 'swing-menu-corr.sh'
 by moving the backupfiles 'menus.rc.original' to 'menus.rc'
@@ -68,4 +68,4 @@ if [[ $ans = "n" ]] || [[ $ans = "N" ]]; then
 	exit 0
 fi
 find $dir -type f -name "menus.rc" -exec rm {} \;
-find $dir -type f -name "menus.rc.original" -exec bash -c 'mv {} $(dirname {})/menus.rc' \;
+find $dir -type f -name "menus.rc.original" -exec bash -c 'mv {} $(dirname {})/menus.rc' \; && echo "Successfully finished"
