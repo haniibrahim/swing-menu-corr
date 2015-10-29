@@ -1,19 +1,9 @@
 #!/bin/bash
 
-# 'swing-menu-corr' emends the following bugs appearing by using Java
-# apps with Swing GTK theme:
-# 
-# - missing menu border
-# - wrong font color of activated checkbox and radiobutton menu items
-# - no menu separators
-# 
-# in Linux Mint 17.x. 
-# 
-# This script changes entries of the 'menus.rc' file in all 'themes'
-# directories of '/usr/share/themes/[mint-theme]/gtk-2.o/styles'.
-# 
-# 'swing-menu-corr' creates backup files as 'menus.rc.original' in every
-# directory before changing the original files. To undo the change use 'swing-menu-undo.sh'.
+# 'swing-menu-undo' reverts the changes of 'swing-menu-corr.sh'
+# by moving the backupfiles 'menus.rc.original' to 'menus.rc'
+# in all 'themes' directories of 
+# '/usr/share/themes/[mint-theme]/gtk-2.0/styles' if possible.
 # 
 # Refer http://blog.hani-ibrahim.de/swing-menus-gtk-laf.html for details.
 # 
@@ -60,23 +50,13 @@ dir=/home/hi/Schreibtisch/themes #test environment
 #	exit -101
 #fi
 
-echo "'swing-menu-corr' emends the following bugs appearing by using Java
-apps with Swing GTK theme:
-
-- missing menu border
-- wrong font color of activated checkbox and radiobutton menu items
-- no menu separators
-
-in Linux Mint 17.x. 
-
-This script changes entries of the 'menus.rc' file in all 'themes'
-directories of '/usr/share/themes/[mint-theme]/gtk-2.0/styles'.
-
-'swing-menu-corr' creates backup files as 'menus.rc.original' in every
-directory before changing the original files. To undo the change use 'swing-menu-undo.sh'.
+echo "'swing-menu-undo' reverts the changes of 'swing-menu-corr.sh'
+by moving the backupfiles 'menus.rc.original' to 'menus.rc'
+in all 'themes' directories of 
+'/usr/share/themes/[mint-theme]/gtk-2.0/styles' if possible.
 
 Refer http://blog.hani-ibrahim.de/swing-menus-gtk-laf.html for details.
-
+ 
 Author: Hani Ibrahim <hani.ibrahim@gmx.de>
 License: GNU Public License 2.0
 "
@@ -86,14 +66,6 @@ read -sn 1 ans
 if [[ $ans = "n" ]] || [[ $ans = "N" ]]; then
 	echo "Process cancelled"	
 	exit 0
-fi 
-
-
-# Create safety copies with ".original" suffix as long as 
-# no .original files are present (prevents overwriting the 
-# original configuration in the backup files by rerunning the script. 
-find $dir -name "menus.rc" -exec bash -c 'if [ ! -f {}.original ];then cp {} {}.original ; fi' \;
-
-# Change to the appropriate settings in menus.rc for correct 
-# displayed Swing menus.
-find $dir -name "menus.rc" -print | xargs sed -i -e 42c"\    xthickness = 1 # Changed by swing-menu-corr.sh" -e 43c"\    ythickness = 1 # Changed by swing-menu-corr.sh" -e 53c"\    fg[ACTIVE] = @fg_color # Changed by swing-menu-corr.sh" -e 103c"\    ythickness = 1 # Changed by swing-menu-corr.sh"
+fi
+find $dir -type f -name "menus.rc" -exec rm {} \;
+find $dir -type f -name "menus.rc.original" -exec bash -c 'mv {} $(dirname {})/menus.rc' \;
