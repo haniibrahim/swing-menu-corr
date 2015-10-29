@@ -83,7 +83,7 @@ License: GNU Public License 2.0
 
 echo "Do you want to proceed? [Y/n]"
 read -sn 1 ans
-if [[ $ans = "n" ]] || [[ $ans = "N" ]]; then
+if [[ ! -z $ans ]] && !([[ $ans == "Y" ]] || [[ $ans == "y" ]]); then
 	echo "Process cancelled"	
 	exit 0
 fi 

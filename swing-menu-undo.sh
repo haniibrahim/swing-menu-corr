@@ -63,9 +63,10 @@ License: GNU Public License 2.0
 
 echo "Do you want to proceed? [Y/n]"
 read -sn 1 ans
-if [[ $ans = "n" ]] || [[ $ans = "N" ]]; then
+if [[ ! -z $ans ]] &&  !([[ $ans == "Y" ]] || [[ $ans == "y" ]]); then
 	echo "Process cancelled"	
 	exit 0
 fi
-find $dir -type f -name "menus.rc" -exec rm {} \;
+
+# Move all menus.rc.original files to menus.rc
 find $dir -type f -name "menus.rc.original" -exec bash -c 'mv {} $(dirname {})/menus.rc' \; && echo "Successfully finished"
