@@ -50,8 +50,6 @@
 
 # Target directory
 dir="/usr/share/themes"
-#dir=/home/hi/Schreibtisch/themes #test environment
-
 
 # Check for root permission
 if [ `id -u` -ne 0 ]
@@ -59,8 +57,8 @@ then
 	echo 'ERROR: Please use "sudo" to run this script with root permission' 1>&2
 	exit -101
 fi
-
-echo "'swing-menu-corr' emends the following bugs appearing by using Java
+# ----------------------------
+echo "'swing-menu-corr' emends the following bugs when using Java
 apps with Swing GTK theme:
 
 - missing menu border
@@ -73,12 +71,13 @@ This script changes entries of the 'menus.rc' file in all 'themes'
 directories of '/usr/share/themes/[mint-theme]/gtk-2.0/styles'.
 
 'swing-menu-corr' creates backup files as 'menus.rc.original' in every
-directory before changing the original files. To undo the change use 'swing-menu-undo.sh'.
+directory before changing the original files. To undo the change use 
+'swing-menu-undo.sh'.
 
 Refer http://blog.hani-ibrahim.de/swing-menus-gtk-laf.html for details.
 
 Author: Hani Ibrahim <hani.ibrahim@gmx.de>
-License: GNU Public License 2.0
+License: GNU Public License 3.0
 "
 
 echo "Do you want to proceed? [Y/n]"
@@ -88,12 +87,37 @@ if [[ ! -z $ans ]] && !([[ $ans == "Y" ]] || [[ $ans == "y" ]]); then
 	exit 0
 fi 
 
+# Check, whether Mint 17.x is used or not
+mint=1  # "mint=1" means Mint 17.x is used 
+if ! lsb_release -i >/dev/null 2>&1; then # Not all Distros have "lsb_release"
+	echo "You do not use Linux Mint at all."
+	mint=0
+fi
+if [ $mint -eq 1 ]; then
 
+	if [[ "`lsb_release -i`" != *Mint* ]]; then
+		echo "You do not use Linux Mint."
+		mint=0
+	fi
+	if [[ "`lsb_release -r`" != *17* ]]; then
+		echo "You do not use Linux Mint Release 17.x."
+		mint=0
+	fi
+fi
+if [ $mint -eq 0 ]; then # When Mint checking fails
+	echo "Do you REALLY want to proceed? [y/N]"
+	read -sn 1 ans
+	if [ "$ans" != "y" -a "$ans" != "Y" ]; then
+		echo "Process cancelled"	
+		exit 0
+	fi
+fi
+# -------------------------------------------
 # Create safety copies with ".original" suffix as long as 
 # no .original files are present (prevents overwriting the 
 # original configuration in the backup files by rerunning the script. 
 find $dir -name "menus.rc" -exec bash -c 'if [ ! -f {}.original ];then cp {} {}.original ; fi' \;
-
+# -------------------------------------------
 # Change to the appropriate settings in menus.rc for correct 
-# displayed Swing menus.
+# displayed Swing menus. In this line the magic takes place :-)
 find $dir -name "menus.rc" -print | xargs sed -i -e 42c"\    xthickness = 1 # Changed by swing-menu-corr.sh" -e 43c"\    ythickness = 1 # Changed by swing-menu-corr.sh" -e 53c"\    fg[ACTIVE] = @fg_color # Changed by swing-menu-corr.sh" -e 103c"\    ythickness = 1 # Changed by swing-menu-corr.sh" && echo "Successfully finished"
