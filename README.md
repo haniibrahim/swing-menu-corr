@@ -1,6 +1,6 @@
 # swing-menu-corr
 
-'swing-menu-corr' emends the following bugs when using Javaapps with Swing GTK theme:- missing menu border- wrong font color of activated checkbox and radiobutton menu items- no menu separatorsin **Linux Mint 17.x**. 
+'swing-menu-corr' emends the following bugs when using Javaapps with Swing GTK-Look-and-Feel (LaF):- missing menu border- wrong font color of activated checkbox and radiobutton menu items- no menu separatorsin **Linux Mint 17.x**. 
 ![image](http://blog.hani-ibrahim.de/wp-content/uploads/menutest_ani.gif)This script changes entries of the 'menus.rc' file in all "themes"directories of `/usr/share/themes/[mint-theme]/gtk-2.0/styles`.
 ![image](http://blog.hani-ibrahim.de/wp-content/uploads/terminal_swing-menu-corr.png)'swing-menu-corr' creates backup files as 'menus.rc.original' in everydirectory before changing the original files. To undo the changes of 'swing-menu-corr.sh' use the script 'swing-menu-undo.sh' and you are at the state before you run 'swing-menu-corr.sh'.This script was tested with Mint 17.1 und 17.2 Cinnamon edition.
 Refer [http://blog.hani-ibrahim.de/swing-menus-gtk-laf.html](http://blog.hani-ibrahim.de/swing-menus-gtk-laf.html) for details.## License
