@@ -5,9 +5,9 @@ When you downloaded the ZIP archive from GitHub <https://github.com/haniibrahim/
 
   unzip ~/Downloads/swing-menu-corr-master.zip
 
-in the terminal. When you downloaded the TAR.GZ archive do the following in the terminal:
+in the terminal. When you downloaded the TAR.GZ archive <https://github.com/haniibrahim/swing-menu-corr/releases> do the following in the terminal:
 
-  tar -xvzf ~/Downloads/swing-menu-corr-master.zip
+  tar -xvzf ~/Downloads/swing-menu-corr-[version].tar.gz
 
 or use your graphical archive manager (e.g. file-roller).
 
@@ -16,15 +16,17 @@ Move to the new created directory "swing-menu-corr-master/" and run the script "
   cd ~/Downloads/swing-menu-corr-master
   sudo swing-menu-corr.sh
 
-Confirm the appearing question with the ENTER-key or type y or Y if you want to proceed.
+Confirm the appearing question with the ENTER-key or type "y" or "Y" (without double quotes) if you want to proceed.
 
 If you are not on Linux Mint 17.x the script will ask you if you really want to proceed (Keep in mind, that the script "swing-menu-undo.sh" can always undo the changes "swing-menu-corr.sh" will do).
 
 -----------------------------------------------------
 
-If you like to undo what "swing-menu-corr.sh" did, run the following script in the terminal:
+If you like to undo what "swing-menu-corr.sh" did, run the following script in the terminal, e.g.:
 
   sudo ~/Downloads/swing-menu-corr-master/swing-menu-undo.sh
+  
+The path can be different in your environment.
 
 ------------------------------------------------------
 
