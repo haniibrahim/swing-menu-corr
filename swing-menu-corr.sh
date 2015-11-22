@@ -65,13 +65,11 @@ apps with Swing GTK theme:
 - wrong font color of activated checkbox and radiobutton menu items
 - no menu separators
 
-in Linux Mint 17.x. 
+in Linux Mint 17.x. This script changes entries of the 'menus.rc' files in 
+all Mint theme directories and the 'gtkrc' file of the Adwaita theme.
 
-This script changes entries of the 'menus.rc' file in all 'themes'
-directories of '/usr/share/themes/[mint-theme]/gtk-2.0/styles'.
-
-'swing-menu-corr' creates backup files as 'menus.rc.original' in every
-directory before changing the original files. To undo the change use 
+'swing-menu-corr' creates backup files '*.original' in every
+directory before changing the original files. To undo the changes use 
 'swing-menu-undo.sh'.
 
 Refer http://blog.hani-ibrahim.de/swing-menus-gtk-laf.html for details.
@@ -113,11 +111,19 @@ if [ $mint -eq 0 ]; then # When Mint checking fails
 	fi
 fi
 # -------------------------------------------
-# Create safety copies with ".original" suffix as long as 
-# no .original files are present (prevents overwriting the 
+# Create safety copies of menus.rc and gtkrc with ".original" suffix 
+# as long as no .original files are present (prevents overwriting the 
 # original configuration in the backup files by rerunning the script. 
 find $dir -name "menus.rc" -exec bash -c 'if [ ! -f {}.original ];then cp {} {}.original ; fi' \;
+cp /usr/share/themes/Adwaita/gtk-2.0/gtkrc /usr/share/themes/Adwaita/gtk-2.0/gtkrc.original
 # -------------------------------------------
 # Change to the appropriate settings in menus.rc for correct 
 # displayed Swing menus. In this line the magic takes place :-)
-find $dir -name "menus.rc" -print | xargs sed -i -e 42c"\    xthickness = 1 # Changed by swing-menu-corr.sh" -e 43c"\    ythickness = 1 # Changed by swing-menu-corr.sh" -e 53c"\    fg[ACTIVE] = @fg_color # Changed by swing-menu-corr.sh" -e 103c"\    ythickness = 1 # Changed by swing-menu-corr.sh" && echo "Successfully finished"
+find $dir -name "menus.rc" -print | xargs sed -i -e 42c"\    xthickness = 1 # Changed by swing-menu-corr.sh" -e 43c"\    ythickness = 1 # Changed by swing-menu-corr.sh" -e 53c"\    fg[ACTIVE] = @fg_color # Changed by swing-menu-corr.sh" -e 103c"\    ythickness = 1 # Changed by swing-menu-corr.sh" 
+# -------------------------------------------
+# Change to the appropriate settings in gtkrc in 
+# /usr/share/themes/Adwaita/gtk-2.0/gtkrc for correct 
+# displayed Swing menus in Adwaita theme.
+sed -i -e 699c"\    xthickness = 1 # Changed by swing-menu-corr.sh" -e 700c"\    ythickness = 1 # Changed by swing-menu-corr.sh" /usr/share/themes/Adwaita/gtk-2.0/gtkrc
+
+echo "Finished" 

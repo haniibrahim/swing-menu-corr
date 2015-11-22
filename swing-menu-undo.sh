@@ -70,3 +70,5 @@ fi
 
 # Move all menus.rc.original files to menus.rc
 find $dir -type f -name "menus.rc.original" -exec bash -c 'mv {} $(dirname {})/menus.rc' \; && echo "Successfully finished"
+
+mv /usr/share/themes/Adwaita/gtk-2.0/gtkrc.original /usr/share/themes/Adwaita/gtk-2.0/gtkrc

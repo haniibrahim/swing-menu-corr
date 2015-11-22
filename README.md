@@ -14,7 +14,7 @@ in **Linux Mint 17.x** (Cinnamon edition).
 ## What swing-menu-corr.sh does
 
 This script changes entries of the 'menus.rc' file in all "themes"
-directories of `/usr/share/themes/[mint-theme]/gtk-2.0/styles`.
+directories of `/usr/share/themes/[mint-theme]/gtk-2.0/styles`. In Version 1.2 it fixes the Adwaita theme as well.
 
 'swing-menu-corr' creates backup files as 'menus.rc.original' in every
 directory before changing the original files. To undo the changes of 'swing-menu-corr.sh' use the script 'swing-menu-undo.sh' and you are at the state before you run 'swing-menu-corr.sh'.
@@ -30,6 +30,15 @@ Refer file [USAGE](https://github.com/haniibrahim/swing-menu-corr/blob/master/US
 ![image](http://blog.hani-ibrahim.de/wp-content/uploads/terminal_swing-menu-corr.png) 
 
 Screenshot "swing-menu-corr.sh"
+
+## Changelog
+
+| Version |  |
+|-----|---------------------------|
+|1.0  | Release                   |
+|1.1  | Checks for Linux Mint 17  |
+|1.1.1| USAGE file added          |
+|1.2  | Adwaita theme fixed       |
 
 ## License
 
