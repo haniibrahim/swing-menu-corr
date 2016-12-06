@@ -48,8 +48,36 @@
 # Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
 # Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 
+# Current Version
+version="1.2.1"
+
 # Target directory
 dir="/usr/share/themes"
+
+# Output version
+if [[ $1 == "--version" ]] || [[ $1 == "-V" ]]
+then 
+	echo $version ; 
+	exit
+fi 
+
+# Help
+if [[ $1 == "--help" ]]
+then
+	echo "USAGE: sudo ./swing-menu-corr.sh [OPTION...]
+Corrects some graphical issues regarding the menu in Java's Swing GTK-LookAndFeel in Linux Mint
+
+ OPTIONS:
+      --help         this page
+  -V, --version      version output
+
+ EXAMPLES:
+  sudo ./swing-menu-corr.sh
+  ./swing-menu-corr.sh --version
+
+To undo the changes of this script use the script 'swing-menu-undo.sh' in this ditribution"
+	exit
+fi
 
 # Check for root permission
 if [ `id -u` -ne 0 ]
@@ -115,7 +143,7 @@ fi
 # as long as no .original files are present (prevents overwriting the 
 # original configuration in the backup files by rerunning the script. 
 find $dir -name "menus.rc" -exec bash -c 'if [ ! -f {}.original ];then cp {} {}.original ; fi' \;
-cp /usr/share/themes/Adwaita/gtk-2.0/gtkrc /usr/share/themes/Adwaita/gtk-2.0/gtkrc.original
+if  [ ! -f /usr/share/themes/Adwaita/gtk-2.0/gtkrc.original ]; then cp /usr/share/themes/Adwaita/gtk-2.0/gtkrc /usr/share/themes/Adwaita/gtk-2.0/gtkrc.original ; fi
 # -------------------------------------------
 # Change to the appropriate settings in menus.rc for correct 
 # displayed Swing menus. In this line the magic takes place :-)
@@ -126,4 +154,5 @@ find $dir -name "menus.rc" -print | xargs sed -i -e 42c"\    xthickness = 1 # Ch
 # displayed Swing menus in Adwaita theme.
 sed -i -e 699c"\    xthickness = 1 # Changed by swing-menu-corr.sh" -e 700c"\    ythickness = 1 # Changed by swing-menu-corr.sh" /usr/share/themes/Adwaita/gtk-2.0/gtkrc
 
-echo "Finished" 
+echo "Finished
+You need to rerun your Java application(s) if already running" 

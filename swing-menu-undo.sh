@@ -38,9 +38,36 @@
 # Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
 # Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 
+
+# Current version
+version="1.2.1"
+
 # Target directory
 dir="/usr/share/themes"
 #dir=/home/hi/Schreibtisch/themes #test environment
+
+# Output version
+if [[ $1 == "--version" ]] || [[ $1 == "-V" ]]
+then 
+	echo $version ; 
+	exit
+fi
+
+# Help
+if [[ $1 == "--help" ]]
+then
+	echo "USAGE: sudo ./swing-menu-undo.sh [OPTION...]
+Undo the changes of 'swing-menu-corr.sh'
+
+ OPTIONS:
+      --help         this page
+  -V, --version      version output
+
+ EXAMPLES
+  sudo ./swing-menu-undo.sh
+  ./swing-menu-undo.sh --version"
+	exit
+fi
 
 
 # Check for root permission
@@ -69,6 +96,6 @@ if [[ ! -z $ans ]] &&  !([[ $ans == "Y" ]] || [[ $ans == "y" ]]); then
 fi
 
 # Move all menus.rc.original files to menus.rc
-find $dir -type f -name "menus.rc.original" -exec bash -c 'mv {} $(dirname {})/menus.rc' \; && echo "Successfully finished"
+find $dir -type f -name "menus.rc.original" -exec bash -c 'mv {} $(dirname {})/menus.rc' \; && echo "Successfully finished. You need to rerun your Java application(s) if already running"
 
 mv /usr/share/themes/Adwaita/gtk-2.0/gtkrc.original /usr/share/themes/Adwaita/gtk-2.0/gtkrc

@@ -19,7 +19,7 @@ directories of `/usr/share/themes/[mint-theme]/gtk-2.0/styles`. In Version 1.2 i
 'swing-menu-corr' creates backup files as 'menus.rc.original' in every
 directory before changing the original files. To undo the changes of 'swing-menu-corr.sh' use the script 'swing-menu-undo.sh' and you are at the state before you run 'swing-menu-corr.sh'.
 
-This script was tested with Mint 17.1 und 17.2 Cinnamon edition.
+This script was tested with Mint 17.1, 17.2 und 17.3 Cinnamon edition.
 
 Refer [http://blog.hani-ibrahim.de/swing-menus-gtk-laf.html](http://blog.hani-ibrahim.de/swing-menus-gtk-laf.html) for details.
 
@@ -39,6 +39,7 @@ Screenshot "swing-menu-corr.sh"
 |1.1  | Checks for Linux Mint 17  |
 |1.1.1| USAGE file added          |
 |1.2  | Adwaita theme fixed       |
+|1.2.1| Prevent overwriting the original backupfile `gtkrc.original` when rerunning the script and add the `--version` option for version information and `--help` for a help page|
 
 ## License
 
