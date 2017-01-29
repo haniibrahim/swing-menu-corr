@@ -1,6 +1,6 @@
 swing-menu-corr Usage
 =====================
-Version. 1.2.1
+Version. 1.2.2
 
 When you downloaded the ZIP archive from GitHub <https://github.com/haniibrahim/swing-menu-corr> in your Download directory, decompress it with:
 
@@ -19,7 +19,7 @@ Move to the new created directory "swing-menu-corr-master/" and run the script "
 
 Confirm the appearing question with the ENTER-key or type "y" or "Y" (without double quotes) if you want to proceed.
 
-If you are not on Linux Mint 17.x the script will ask you if you really want to proceed (Keep in mind, that the script "swing-menu-undo.sh" can always undo the changes "swing-menu-corr.sh" will do).
+If you are not on Linux Mint 17.x or 18.x the script will ask you if you really want to proceed (Keep in mind, that the script "swing-menu-undo.sh" can always undo the changes "swing-menu-corr.sh" will do).
 
 IMPORTANT: You need to close and reopen your Java Swing application if it is already running!
 
