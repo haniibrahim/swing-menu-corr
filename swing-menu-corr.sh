@@ -7,7 +7,7 @@
 # - wrong font color of activated checkbox and radiobutton menu items
 # - no menu separators
 # 
-# in Linux Mint 17.x. 
+# in Linux Mint 17.x and 18.x. 
 # 
 # This script changes entries of the 'menus.rc' file in all 'themes'
 # directories of '/usr/share/themes/[mint-theme]/gtk-2.o/styles'.
@@ -49,7 +49,7 @@
 # Programm erhalten haben. Wenn nicht, siehe <http://www.gnu.org/licenses/>.
 
 # Current Version
-version="1.2.1"
+version="1.2.2"
 
 # Target directory
 dir="/usr/share/themes"
@@ -93,8 +93,8 @@ apps with Swing GTK theme:
 - wrong font color of activated checkbox and radiobutton menu items
 - no menu separators
 
-in Linux Mint 17.x. This script changes entries of the 'menus.rc' files in 
-all Mint theme directories and the 'gtkrc' file of the Adwaita theme.
+in Linux Mint 17.x/18.x. This script changes entries of the 'menus.rc' files 
+in all Mint theme directories and the 'gtkrc' file of the Adwaita theme.
 
 'swing-menu-corr' creates backup files '*.original' in every
 directory before changing the original files. To undo the changes use 
@@ -113,8 +113,8 @@ if [[ ! -z $ans ]] && !([[ $ans == "Y" ]] || [[ $ans == "y" ]]); then
 	exit 0
 fi 
 
-# Check, whether Mint 17.x is used or not
-mint=1  # "mint=1" means Mint 17.x is used 
+# Check, whether Mint 17.x/18.x is used or not
+mint=1  # "mint=1" means Mint 17.x/18.x is used 
 if ! lsb_release -i >/dev/null 2>&1; then # Not all Distros have "lsb_release"
 	echo "You do not use Linux Mint at all."
 	mint=0
@@ -125,8 +125,8 @@ if [ $mint -eq 1 ]; then
 		echo "You do not use Linux Mint."
 		mint=0
 	fi
-	if [[ "`lsb_release -r`" != *17* ]]; then
-		echo "You do not use Linux Mint Release 17.x."
+	if [[ "`lsb_release -r`" != *17* ]] && [[ "`lsb_release -r`" != *18* ]]; then
+		echo "You do not use Linux Mint Release 17.x or 18.x."
 		mint=0
 	fi
 fi
