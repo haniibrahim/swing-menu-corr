@@ -40,7 +40,7 @@
 
 
 # Current version
-version="1.2.1"
+version="1.2.2"
 
 # Target directory
 dir="/usr/share/themes"
