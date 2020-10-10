@@ -124,7 +124,7 @@ if ! lsb_release -i >/dev/null 2>&1; then # Not all Distros have "lsb_release"
 fi
 if [ $mint -eq 1 ]; then
 
-	if [[ "`lsb_release -i`" != *Mint* ]]; then
+	if [[ "`lsb_release -i`" != *Mint* ]] && [[ "`lsb_release -i`" != *mint* ]]; then
 		echo "You do not use Linux Mint."
 		mint=0
 	fi
