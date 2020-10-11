@@ -15,7 +15,7 @@ or use your graphical archive manager (e.g. file-roller).
 Move to the new created directory "swing-menu-corr-master/" and run the script "swing-menu.corr.sh":
 
   cd ~/Downloads/swing-menu-corr-master
-  sudo swing-menu-corr.sh
+  sudo ./swing-menu-corr.sh
 
 Confirm the appearing question with the ENTER-key or type "y" or "Y" (without double quotes) if you want to proceed.
 
